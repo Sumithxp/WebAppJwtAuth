@@ -11,8 +11,7 @@ namespace webAppJwtAuth.Controllers
     [ApiController]
     [Authorize] 
     public class CustomersController : ControllerBase
-    {
-        // GET api/values
+    {    
         [HttpGet]
         public IEnumerable<string> Get()
         {
