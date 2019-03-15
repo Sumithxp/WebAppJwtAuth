@@ -12,27 +12,27 @@ public class AuthController : ControllerBase
 {
     // GET api/values
     [HttpPost, Route("login")]
-    public IActionResult Login()
+    public IActionResult Login([FromBody] LoginModel user)
     {
         // if (user == null)
         // {
         //     return BadRequest("Invalid client request");
         // }
 
-        var user = new LoginModel();
-        user.UserName = "johndoe";
-        user.Password = "def@123";
+        //var user = new LoginModel();
+        //user.UserName = "johndoe";
+        //user.Password = "def@123";
 
-        if (user.UserName == "johndoe" && user.Password == "def@123")
+        if (user.UserName == "johndoe" && user.Password == "pass@123")
         {
-            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SymmetricSecurityKey@123"));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
             var tokeOptions = new JwtSecurityToken(
                 issuer: "https://localhost:4300",
                 audience: "https://localhost:4300",
                 claims: new List<Claim>(),
-                expires: DateTime.Now.AddMinutes(1),
+                expires: DateTime.Now.AddMinutes(10),
                 signingCredentials: signinCredentials
             );
 
